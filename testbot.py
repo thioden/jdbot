@@ -1,7 +1,8 @@
 import time, json, re, os
 from datetime import datetime
 from slackclient import SlackClient
-token = 'xoxb-50784128320-QUEE4BbBCPYhliQPYhOcY0Vr'
+#token = 'xoxb-50784128320-QUEE4BbBCPYhliQPYhOcY0Vr'
+token = int(os.environ.get('slack_api_key'))
 sc = SlackClient(token)
 
 chan = 'D1GP6ABCM'
@@ -15,7 +16,7 @@ def checkmsg(recv_msg):
     if recv_msg.lower() == 'hello':
         post('Greetings')
     elif ' time ' in recv_msg.lower():
-        post(str(datetime.now()))     
+        post(str(datetime.now()))
 
 if sc.rtm_connect():
     post('JDBOT ON THE JOB')
